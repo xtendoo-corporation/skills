@@ -1,0 +1,91 @@
+[12:21:36] INFO: Conectando a https://bitevolcrm.xtd.es (db=bitevol_crm)...
+[12:21:37] INFO: Conexión establecida. uid=2 db=bitevol_crm
+[12:21:37] INFO: Verificando idioma: es_ES
+[12:21:38] INFO: Verificando idioma: en_US
+[12:21:40] INFO: Idiomas verificados.
+[12:21:40] INFO: Configurando parámetro web.base.url = https://bitevolcrm.xtd.es
+[12:21:41] INFO: Configurando parámetro mail.catchall.domain = xtd.es
+[12:21:42] INFO: Configurando parámetro mail.catchall.alias = catchall
+[12:21:43] INFO: Configurando parámetro mail.bounce.alias = bounce
+[12:21:45] INFO: Parámetros del sistema aplicados.
+[12:21:45] INFO: Verificando configuración de compañía...
+[12:21:47] INFO: Compañía actualizada: Robatech
+[12:21:47] INFO: Verificando instalación de módulos: ['base', 'contacts', 'mail', 'account', 'website', 'crm']
+[12:21:47] INFO: Iniciando instalación de: ['account', 'website']
+[12:21:47] INFO: Instalando [1/2]: account...
+[12:21:48] ERROR: Odoo Fault en ir.module.module.button_immediate_install: 1 - Traceback (most recent call last):
+  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 162, in xmlrpc_2
+    response = self._xmlrpc(service)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 134, in _xmlrpc
+    result = dispatch_rpc(service, method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/http.py", line 439, in dispatch_rpc
+    return dispatch(method, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 129, in dispatch
+    res = execute_cr(cr, uid, model, method_, args, kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 146, in execute_cr
+    result = retrying(partial(call_kw, recs, method, args, kw), env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 184, in retrying
+    result = func()
+             ^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 93, in call_kw
+    result = method(recs, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 67, in check_and_log
+    log_data = (method.__name__, self.sudo().mapped('display_name'), user.login, user.id, origin)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 6170, in mapped
+    return [getter(record) for record in records]
+            ^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 1672, in __get__
+    value = field_cache[record_id]
+            ~~~~~~~~~~~^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+Traceback (most recent call last):
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 420, in <module>
+    main()
+    ~~~~^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 401, in main
+    install_modules(models, db, uid, password, module_names)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 333, in install_modules
+    model_exec(
+    ~~~~~~~~~~^
+        models,
+        ^^^^^^^
+    ...<5 lines>...
+        [[m_data["id"]]],
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 105, in model_exec
+    raise e
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 89, in model_exec
+    return models.execute_kw(db, uid, password, model, method, args, kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1156, in single_request
+    return self.parse_response(resp)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1325, in parse_response
+    return u.close()
+           ~~~~~~~^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 642, in close
+    raise Fault(**self._stack[0])
+xmlrpc.client.Fault: <Fault 1: 'Traceback (most recent call last):\n  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 162, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 134, in _xmlrpc\n    result = dispatch_rpc(service, method, params)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/http.py", line 439, in dispatch_rpc\n    return dispatch(method, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 129, in dispatch\n    res = execute_cr(cr, uid, model, method_, args, kw)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 146, in execute_cr\n    result = retrying(partial(call_kw, recs, method, args, kw), env)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 184, in retrying\n    result = func()\n             ^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 93, in call_kw\n    result = method(recs, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 67, in check_and_log\n    log_data = (method.__name__, self.sudo().mapped(\'display_name\'), user.login, user.id, origin)\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 6170, in mapped\n    return [getter(record) for record in records]\n            ^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 1672, in __get__\n    value = field_cache[record_id]\n            ~~~~~~~~~~~^^^^^^^^^^^\nTypeError: unhashable type: \'list\'\n'>

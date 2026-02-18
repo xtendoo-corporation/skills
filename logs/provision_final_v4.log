@@ -1,0 +1,22 @@
+[12:22:13] INFO: Conectando a https://bitevolcrm.xtd.es (db=bitevol_crm)...
+[12:22:14] INFO: Conexión establecida. uid=2 db=bitevol_crm
+[12:22:14] INFO: Verificando idioma: es_ES
+[12:22:15] INFO: Verificando idioma: en_US
+[12:22:16] INFO: Idiomas verificados.
+[12:22:16] INFO: Configurando parámetro web.base.url = https://bitevolcrm.xtd.es
+[12:22:17] INFO: Configurando parámetro mail.catchall.domain = xtd.es
+[12:22:18] INFO: Configurando parámetro mail.catchall.alias = catchall
+[12:22:19] INFO: Configurando parámetro mail.bounce.alias = bounce
+[12:22:21] INFO: Parámetros del sistema aplicados.
+[12:22:21] INFO: Verificando configuración de compañía...
+[12:22:22] INFO: Compañía actualizada: Robatech
+[12:22:22] INFO: Verificando instalación de módulos: ['base', 'contacts', 'mail', 'account', 'website', 'crm']
+[12:22:23] INFO: Iniciando instalación de: ['account', 'website']
+[12:22:23] INFO: Instalando [1/2]: account...
+[12:23:33] INFO: Módulo account instalado (o acción desencadenada).
+[12:23:33] INFO: Instalando [2/2]: website...
+[12:24:09] INFO: Módulo website instalado (o acción desencadenada).
+[12:24:09] INFO: Proceso de módulos finalizado.
+[12:24:09] INFO: Configurando SMTP: SMTP Principal
+[12:24:11] INFO: SMTP configurado correctamente (id=[1]).
+[12:24:11] INFO: Provisioning completado con éxito.

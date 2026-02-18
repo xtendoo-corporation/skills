@@ -1,0 +1,123 @@
+[12:48:06] INFO: Conectando a https://aulavie.xtd.es/ (db=aulavie)...
+[12:48:07] INFO: Conexión establecida. uid=2 db=aulavie
+[12:48:07] INFO: Verificando idioma: es_ES
+[12:48:08] INFO: Idioma es_ES activado.
+[12:48:08] INFO: Verificando idioma: en_US
+[12:48:10] INFO: Idioma en_US activado.
+[12:48:10] INFO: Idiomas verificados.
+[12:48:10] INFO: Configurando parámetro web.base.url = https://aulavie.xtd.es/
+[12:48:12] INFO: Configurando parámetro mail.catchall.domain = xtd.es
+[12:48:13] INFO: Configurando parámetro mail.catchall.alias = catchall
+[12:48:14] INFO: Configurando parámetro mail.bounce.alias = bounce
+[12:48:16] INFO: Parámetros del sistema aplicados.
+[12:48:16] INFO: Verificando configuración de compañía...
+[12:48:19] INFO: Compañía actualizada: Aulavie
+[12:48:19] INFO: Verificando instalación de módulos: ['base', 'contacts', 'mail', 'account', 'website', 'crm', 'l10n_es', 'sale', 'purchase']
+[12:48:19] INFO: Todos los módulos ya están instalados.
+[12:48:19] INFO: Proceso de módulos finalizado.
+[12:48:19] INFO: Procesando usuario: xtendoo
+[12:48:21] INFO:   Usuario xtendoo actualizado.
+[12:48:22] INFO: DEBUG: res.users fields (partial): ['activity_user_id', 'all_group_ids', 'fiscal_country_group_codes', 'group_ids', 'groups_count', 'main_user_id', 'res_users_settings_id', 'res_users_settings_ids', 'user_id', 'user_ids', 'view_group_hierarchy']
+[12:48:23] ERROR: Odoo Fault en ir.actions.server.run: 1 - Traceback (most recent call last):
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 4381, in write
+    self._check_field_access(self._fields[field_name], 'write')
+                             ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'users'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/odoo/custom/src/odoo/odoo/tools/safe_eval.py", line 397, in safe_eval
+    return unsafe_eval(c, globals_dict, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "ir.actions.server(451,)", line 6, in <module>
+  File "/opt/odoo/auto/addons/mail/models/discuss/res_groups.py", line 10, in write
+    res = super().write(vals)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_groups.py", line 191, in write
+    res = super().write(vals)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 4383, in write
+    raise ValueError(f"Invalid field {field_name!r} in {self._name!r}") from e
+ValueError: Invalid field 'users' in 'res.groups'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 162, in xmlrpc_2
+    response = self._xmlrpc(service)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 134, in _xmlrpc
+    result = dispatch_rpc(service, method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/http.py", line 439, in dispatch_rpc
+    return dispatch(method, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 129, in dispatch
+    res = execute_cr(cr, uid, model, method_, args, kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 146, in execute_cr
+    result = retrying(partial(call_kw, recs, method, args, kw), env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 184, in retrying
+    result = func()
+             ^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 93, in call_kw
+    result = method(recs, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_actions.py", line 1177, in run
+    res = action._run(records, eval_context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_actions.py", line 1190, in _run
+    res = runner(run_self, eval_context=eval_context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/website/models/ir_actions_server.py", line 59, in _run_action_code_multi
+    res = super()._run_action_code_multi(eval_context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_actions.py", line 1014, in _run_action_code_multi
+    safe_eval(self.code.strip(), eval_context, mode="exec", filename=str(self))
+  File "/opt/odoo/custom/src/odoo/odoo/tools/safe_eval.py", line 403, in safe_eval
+    raise ValueError('%r while evaluating\n%r' % (e, expr))
+ValueError: ValueError("Invalid field 'users' in 'res.groups'") while evaluating
+"user = env['res.users'].search([('login', '=', 'xtendoo')], limit=1)\nxml_ids = ['base.group_system', 'base.group_user', 'base.group_erp_manager', 'base.group_partner_manager', 'account.group_account_manager', 'sales_team.group_sale_manager', 'purchase.group_purchase_manager', 'website.group_website_designer', 'base.group_no_one']\nfor xml_id in xml_ids:\n    group = env.ref(xml_id, False)\n    if group and user:\n        group.sudo().write({'users': [(4, user.id)]})"
+
+Traceback (most recent call last):
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 565, in <module>
+    main()
+    ~~~~^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 545, in main
+    ensure_user(models, db, uid, password, u)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 474, in ensure_user
+    model_exec(
+    ~~~~~~~~~~^
+        models, db, uid, password, "ir.actions.server", "run", [action_id]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 105, in model_exec
+    raise e
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 89, in model_exec
+    return models.execute_kw(db, uid, password, model, method, args, kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1156, in single_request
+    return self.parse_response(resp)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1325, in parse_response
+    return u.close()
+           ~~~~~~~^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 642, in close
+    raise Fault(**self._stack[0])
+xmlrpc.client.Fault: <Fault 1: 'Traceback (most recent call last):\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 4381, in write\n    self._check_field_access(self._fields[field_name], \'write\')\n                             ~~~~~~~~~~~~^^^^^^^^^^^^\nKeyError: \'users\'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File "/opt/odoo/custom/src/odoo/odoo/tools/safe_eval.py", line 397, in safe_eval\n    return unsafe_eval(c, globals_dict, None)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "ir.actions.server(451,)", line 6, in <module>\n  File "/opt/odoo/auto/addons/mail/models/discuss/res_groups.py", line 10, in write\n    res = super().write(vals)\n          ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_groups.py", line 191, in write\n    res = super().write(vals)\n          ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 4383, in write\n    raise ValueError(f"Invalid field {field_name!r} in {self._name!r}") from e\nValueError: Invalid field \'users\' in \'res.groups\'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 162, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 134, in _xmlrpc\n    result = dispatch_rpc(service, method, params)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/http.py", line 439, in dispatch_rpc\n    return dispatch(method, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 129, in dispatch\n    res = execute_cr(cr, uid, model, method_, args, kw)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 146, in execute_cr\n    result = retrying(partial(call_kw, recs, method, args, kw), env)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 184, in retrying\n    result = func()\n             ^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 93, in call_kw\n    result = method(recs, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_actions.py", line 1177, in run\n    res = action._run(records, eval_context)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_actions.py", line 1190, in _run\n    res = runner(run_self, eval_context=eval_context)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/website/models/ir_actions_server.py", line 59, in _run_action_code_multi\n    res = super()._run_action_code_multi(eval_context)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_actions.py", line 1014, in _run_action_code_multi\n    safe_eval(self.code.strip(), eval_context, mode="exec", filename=str(self))\n  File "/opt/odoo/custom/src/odoo/odoo/tools/safe_eval.py", line 403, in safe_eval\n    raise ValueError(\'%r while evaluating\\n%r\' % (e, expr))\nValueError: ValueError("Invalid field \'users\' in \'res.groups\'") while evaluating\n"user = env[\'res.users\'].search([(\'login\', \'=\', \'xtendoo\')], limit=1)\\nxml_ids = [\'base.group_system\', \'base.group_user\', \'base.group_erp_manager\', \'base.group_partner_manager\', \'account.group_account_manager\', \'sales_team.group_sale_manager\', \'purchase.group_purchase_manager\', \'website.group_website_designer\', \'base.group_no_one\']\\nfor xml_id in xml_ids:\\n    group = env.ref(xml_id, False)\\n    if group and user:\\n        group.sudo().write({\'users\': [(4, user.id)]})"\n'>

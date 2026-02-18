@@ -1,0 +1,27 @@
+[13:02:47] INFO: Conectando a https://aulavie.xtd.es/ (db=aulavie)...
+[13:02:49] INFO: Conexión establecida. uid=2 db=aulavie
+[13:02:49] INFO: Verificando idioma: es_ES
+[13:02:50] INFO: Idioma es_ES activado.
+[13:02:50] INFO: Verificando idioma: en_US
+[13:02:51] INFO: Idioma en_US activado.
+[13:02:51] INFO: Idiomas verificados.
+[13:02:51] INFO: Configurando parámetro web.base.url = https://aulavie.xtd.es/
+[13:02:52] INFO: Configurando parámetro mail.catchall.domain = xtd.es
+[13:02:53] INFO: Configurando parámetro mail.catchall.alias = catchall
+[13:02:54] INFO: Configurando parámetro mail.bounce.alias = bounce
+[13:02:56] INFO: Parámetros del sistema aplicados.
+[13:02:56] INFO: Verificando configuración de compañía...
+[13:02:57] INFO: Compañía actualizada: Aulavie
+[13:02:57] INFO: Verificando instalación de módulos: ['base', 'contacts', 'mail', 'account', 'website', 'crm', 'l10n_es', 'sale', 'purchase']
+[13:02:57] INFO: Todos los módulos ya están instalados.
+[13:02:57] INFO: Proceso de módulos finalizado.
+[13:02:57] INFO: Procesando usuario: admin
+[13:03:04] INFO:   Usuario admin actualizado.
+[13:03:04] INFO: Procesando usuario: xtendoo
+[13:03:14] INFO:   Usuario xtendoo actualizado.
+[13:03:15] INFO: DEBUG: res.users fields (partial): ['activity_user_id', 'all_group_ids', 'fiscal_country_group_codes', 'group_ids', 'groups_count', 'main_user_id', 'res_users_settings_id', 'res_users_settings_ids', 'user_id', 'user_ids', 'view_group_hierarchy']
+[13:03:16] INFO:   Grupos asignados a xtendoo (Server Action).
+[13:03:16] INFO: Usuarios procesados.
+[13:03:16] INFO: Configurando SMTP: SMTP Principal
+[13:03:16] INFO: SMTP configurado correctamente (id=1).
+[13:03:16] INFO: Provisioning completado con éxito.

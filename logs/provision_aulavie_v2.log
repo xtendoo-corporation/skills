@@ -1,0 +1,175 @@
+[12:09:43] INFO: Conectando a https://aulavie.xtd.es/ (db=aulavie)...
+[12:09:44] INFO: Conexión establecida. uid=2 db=aulavie
+[12:09:44] INFO: Verificando idioma: es_ES
+[12:09:45] INFO: Idioma es_ES activado.
+[12:09:45] INFO: Verificando idioma: en_US
+[12:09:46] INFO: Idioma en_US activado.
+[12:09:46] INFO: Idiomas verificados.
+[12:09:46] INFO: Configurando parámetro web.base.url = https://aulavie.xtd.es/
+[12:09:47] INFO: Configurando parámetro mail.catchall.domain = xtd.es
+[12:09:48] INFO: Configurando parámetro mail.catchall.alias = catchall
+[12:09:49] INFO: Configurando parámetro mail.bounce.alias = bounce
+[12:09:50] INFO: Parámetros del sistema aplicados.
+[12:09:50] INFO: Verificando configuración de compañía...
+[12:09:52] INFO: Compañía actualizada: Aulavie
+[12:09:52] INFO: Verificando instalación de módulos: ['base', 'contacts', 'mail', 'account', 'website', 'crm', 'l10n_es', 'sale', 'purchase']
+[12:09:53] INFO: Iniciando instalación de: ['account', 'crm', 'website', 'purchase', 'mail', 'contacts', 'l10n_es', 'sale']
+[12:09:53] INFO: Instalando [1/8]: account...
+[12:11:29] INFO: Módulo account instalado (o acción desencadenada).
+[12:11:29] INFO: Instalando [2/8]: crm...
+[12:11:48] INFO: Módulo crm instalado (o acción desencadenada).
+[12:11:48] INFO: Instalando [3/8]: website...
+[12:12:22] INFO: Módulo website instalado (o acción desencadenada).
+[12:12:22] INFO: Instalando [4/8]: purchase...
+[12:12:38] INFO: Módulo purchase instalado (o acción desencadenada).
+[12:12:38] INFO: Instalando [5/8]: mail...
+[12:12:44] INFO: Módulo mail instalado (o acción desencadenada).
+[12:12:44] INFO: Instalando [6/8]: contacts...
+[12:12:50] INFO: Módulo contacts instalado (o acción desencadenada).
+[12:12:50] INFO: Instalando [7/8]: l10n_es...
+[12:12:51] ERROR: Odoo Fault en ir.module.module.button_immediate_install: 1 - Traceback (most recent call last):
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 625, in _button_immediate_function
+    self.env.cr.execute("SELECT FROM ir_cron FOR UPDATE NOWAIT")
+  File "/opt/odoo/custom/src/odoo/odoo/sql_db.py", line 433, in execute
+    self._obj.execute(query, params)
+psycopg2.errors.LockNotAvailable: could not obtain lock on row in relation "ir_cron"
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 162, in xmlrpc_2
+    response = self._xmlrpc(service)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 134, in _xmlrpc
+    result = dispatch_rpc(service, method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/http.py", line 439, in dispatch_rpc
+    return dispatch(method, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 129, in dispatch
+    res = execute_cr(cr, uid, model, method_, args, kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 146, in execute_cr
+    result = retrying(partial(call_kw, recs, method, args, kw), env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 184, in retrying
+    result = func()
+             ^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 93, in call_kw
+    result = method(recs, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 72, in check_and_log
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 492, in button_immediate_install
+    return self._button_immediate_function(self.env.registry[self._name].button_install)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 627, in _button_immediate_function
+    raise UserError(_("Odoo is currently processing a scheduled action.\n"
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/tools/translate.py", line 567, in get_text_alias
+    module, lang = _get_translation_source(1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/tools/translate.py", line 556, in _get_translation_source
+    lang = lang or _get_lang(frame, default_lang)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/tools/translate.py", line 540, in _get_lang
+    if lang := env['res.users'].context_get().get('lang'):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/tools/cache.py", line 98, in lookup
+    return self.lookup(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/tools/cache.py", line 155, in lookup
+    value = self.method(*args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_users.py", line 700, in context_get
+    context = self.env.user.read(['lang', 'tz'], load=False)[0]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_users.py", line 569, in read
+    return super().read(fields=fields, load=load)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3490, in read
+    return self._read_format(fnames=fields, load=load)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3747, in _read_format
+    vals[name] = convert(record[name], record, use_display_name)
+                         ~~~~~~^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 6686, in __getitem__
+    return self._fields[key].__get__(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 1746, in __get__
+    self.compute_value(recs)
+  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 1917, in compute_value
+    records._compute_field_value(self)
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 4952, in _compute_field_value
+    determine(field.compute, self)
+  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 84, in determine
+    return needle(records, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 720, in _compute_related
+    record[self.name] = self._process_related(value[self.related_field.name], record.env)
+                                              ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 6686, in __getitem__
+    return self._fields[key].__get__(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 1702, in __get__
+    recs._fetch_field(self)
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3772, in _fetch_field
+    self.fetch(fnames)
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3812, in fetch
+    fetched = self._fetch_query(query, fields_to_fetch)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3917, in _fetch_query
+    rows = self.env.execute_query(query.select(*sql_terms))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/environments.py", line 534, in execute_query
+    self.cr.execute(query)
+  File "/opt/odoo/custom/src/odoo/odoo/sql_db.py", line 433, in execute
+    self._obj.execute(query, params)
+psycopg2.errors.InFailedSqlTransaction: current transaction is aborted, commands ignored until end of transaction block
+
+
+Traceback (most recent call last):
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 512, in <module>
+    main()
+    ~~~~^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 483, in main
+    install_modules(models, db, uid, password, module_names)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 313, in install_modules
+    model_exec(
+    ~~~~~~~~~~^
+        models,
+        ^^^^^^^
+    ...<5 lines>...
+        [m_data["id"]],
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 105, in model_exec
+    raise e
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 89, in model_exec
+    return models.execute_kw(db, uid, password, model, method, args, kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1156, in single_request
+    return self.parse_response(resp)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1325, in parse_response
+    return u.close()
+           ~~~~~~~^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 642, in close
+    raise Fault(**self._stack[0])
+xmlrpc.client.Fault: <Fault 1: 'Traceback (most recent call last):\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 625, in _button_immediate_function\n    self.env.cr.execute("SELECT FROM ir_cron FOR UPDATE NOWAIT")\n  File "/opt/odoo/custom/src/odoo/odoo/sql_db.py", line 433, in execute\n    self._obj.execute(query, params)\npsycopg2.errors.LockNotAvailable: could not obtain lock on row in relation "ir_cron"\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 162, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 134, in _xmlrpc\n    result = dispatch_rpc(service, method, params)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/http.py", line 439, in dispatch_rpc\n    return dispatch(method, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 129, in dispatch\n    res = execute_cr(cr, uid, model, method_, args, kw)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 146, in execute_cr\n    result = retrying(partial(call_kw, recs, method, args, kw), env)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 184, in retrying\n    result = func()\n             ^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 93, in call_kw\n    result = method(recs, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 72, in check_and_log\n    return method(self, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 492, in button_immediate_install\n    return self._button_immediate_function(self.env.registry[self._name].button_install)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/ir_module.py", line 627, in _button_immediate_function\n    raise UserError(_("Odoo is currently processing a scheduled action.\\n"\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/tools/translate.py", line 567, in get_text_alias\n    module, lang = _get_translation_source(1)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/tools/translate.py", line 556, in _get_translation_source\n    lang = lang or _get_lang(frame, default_lang)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/tools/translate.py", line 540, in _get_lang\n    if lang := env[\'res.users\'].context_get().get(\'lang\'):\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/tools/cache.py", line 98, in lookup\n    return self.lookup(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/tools/cache.py", line 155, in lookup\n    value = self.method(*args, **kwargs)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_users.py", line 700, in context_get\n    context = self.env.user.read([\'lang\', \'tz\'], load=False)[0]\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_users.py", line 569, in read\n    return super().read(fields=fields, load=load)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3490, in read\n    return self._read_format(fnames=fields, load=load)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3747, in _read_format\n    vals[name] = convert(record[name], record, use_display_name)\n                         ~~~~~~^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 6686, in __getitem__\n    return self._fields[key].__get__(self)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 1746, in __get__\n    self.compute_value(recs)\n  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 1917, in compute_value\n    records._compute_field_value(self)\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 4952, in _compute_field_value\n    determine(field.compute, self)\n  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 84, in determine\n    return needle(records, *args)\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 720, in _compute_related\n    record[self.name] = self._process_related(value[self.related_field.name], record.env)\n                                              ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 6686, in __getitem__\n    return self._fields[key].__get__(self)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/fields.py", line 1702, in __get__\n    recs._fetch_field(self)\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3772, in _fetch_field\n    self.fetch(fnames)\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3812, in fetch\n    fetched = self._fetch_query(query, fields_to_fetch)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 3917, in _fetch_query\n    rows = self.env.execute_query(query.select(*sql_terms))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/environments.py", line 534, in execute_query\n    self.cr.execute(query)\n  File "/opt/odoo/custom/src/odoo/odoo/sql_db.py", line 433, in execute\n    self._obj.execute(query, params)\npsycopg2.errors.InFailedSqlTransaction: current transaction is aborted, commands ignored until end of transaction block\n\n'>

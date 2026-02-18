@@ -1,0 +1,73 @@
+odoo:
+  url: "https://fidetia.xtendoo.es"
+  db: "fidetia_19"              # si aplica
+  username: "xtendoo"
+  password_env: "Xtend00!"  # exportar en terminal
+
+case:
+  project:
+    name: "Implantación Odoo 19 – Smith&Co"
+    customer: "Smith&Co"
+    analytic_account: "PRJ-SMITH-ODOO19"
+
+  budget:
+    name: "Presupuesto PRJ-SMITH-ODOO19"
+    date_start: "2026-03-01"
+    date_end: "2026-05-31"
+    lines:
+      - position: "Ingresos – Servicios proyecto"
+        planned_amount: 12000
+      - position: "Gastos – Subcontratación"
+        planned_amount: -5000
+      - position: "Gastos – Viajes y dietas"
+        planned_amount: -1000
+      - position: "Gastos – Licencias / SaaS"
+        planned_amount: -2000
+
+  invoices:
+    customer_invoices:
+      - partner: "Smith&Co"
+        date: "2026-03-31"
+        lines:
+          - label: "Servicios implantación – Marzo"
+            account: "Ingresos – Servicios"   # o producto
+            qty: 1
+            price: 4000
+            analytic: "PRJ-SMITH-ODOO19"
+      - partner: "Smith&Co"
+        date: "2026-04-30"
+        lines:
+          - label: "Servicios implantación – Abril"
+            qty: 1
+            price: 4000
+            analytic: "PRJ-SMITH-ODOO19"
+      - partner: "Smith&Co"
+        date: "2026-05-31"
+        lines:
+          - label: "Servicios implantación – Mayo"
+            qty: 1
+            price: 4000
+            analytic: "PRJ-SMITH-ODOO19"
+
+    vendor_bills:
+      - partner: "Consultor externo SL"
+        date: "2026-04-15"
+        lines:
+          - label: "Subcontratación consultoría – Abril"
+            qty: 1
+            price: 6200
+            analytic: "PRJ-SMITH-ODOO19"
+      - partner: "Agencia viajes SA"
+        date: "2026-04-20"
+        lines:
+          - label: "Viajes y dietas – Abril"
+            qty: 1
+            price: 900
+            analytic: "PRJ-SMITH-ODOO19"
+      - partner: "Proveedor SaaS SL"
+        date: "2026-03-05"
+        lines:
+          - label: "Licencias / SaaS – Marzo"
+            qty: 1
+            price: 2400
+            analytic: "PRJ-SMITH-ODOO19"

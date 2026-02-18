@@ -1,0 +1,50 @@
+[12:50:09] INFO: Conectando a https://bitevolcrm.xtd.es (db=bitevol_crm)...
+[12:50:11] INFO: Conexión establecida. uid=2 db=bitevol_crm
+[12:50:11] INFO: Verificando idioma: es_ES
+[12:50:12] INFO: Verificando idioma: en_US
+[12:50:13] INFO: Idiomas verificados.
+[12:50:13] INFO: Configurando parámetro web.base.url = https://bitevolcrm.xtd.es
+[12:50:14] INFO: Configurando parámetro mail.catchall.domain = xtd.es
+[12:50:15] INFO: Configurando parámetro mail.catchall.alias = catchall
+[12:50:17] INFO: Configurando parámetro mail.bounce.alias = bounce
+[12:50:18] INFO: Parámetros del sistema aplicados.
+[12:50:18] INFO: Verificando configuración de compañía...
+[12:50:20] ERROR: Odoo Fault en res.company.write: 2 - 
+Parece que el número IVA [B12345678] para contacto [Robatech] no es válido.  
+Nota: el formato esperado es ESA12345674
+Traceback (most recent call last):
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 510, in <module>
+    main()
+    ~~~~^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 473, in main
+    ensure_company(models, db, uid, password, comp)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 171, in ensure_company
+    model_exec(models, db, uid, password, "res.company", "write", ids, vals)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 105, in model_exec
+    raise e
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 89, in model_exec
+    return models.execute_kw(db, uid, password, model, method, args, kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1156, in single_request
+    return self.parse_response(resp)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1325, in parse_response
+    return u.close()
+           ~~~~~~~^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 642, in close
+    raise Fault(**self._stack[0])
+xmlrpc.client.Fault: <Fault 2: '\nParece que el número IVA [B12345678] para contacto [Robatech] no es válido.  \nNota: el formato esperado es ESA12345674'>

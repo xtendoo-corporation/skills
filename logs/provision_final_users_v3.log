@@ -1,0 +1,111 @@
+[12:54:54] INFO: Conectando a https://bitevolcrm.xtd.es (db=bitevol_crm)...
+[12:54:55] INFO: Conexión establecida. uid=2 db=bitevol_crm
+[12:54:55] INFO: Verificando idioma: es_ES
+[12:54:56] INFO: Verificando idioma: en_US
+[12:54:57] INFO: Idiomas verificados.
+[12:54:57] INFO: Configurando parámetro web.base.url = https://bitevolcrm.xtd.es
+[12:54:58] INFO: Configurando parámetro mail.catchall.domain = xtd.es
+[12:54:59] INFO: Configurando parámetro mail.catchall.alias = catchall
+[12:55:00] INFO: Configurando parámetro mail.bounce.alias = bounce
+[12:55:01] INFO: Parámetros del sistema aplicados.
+[12:55:01] INFO: Verificando configuración de compañía...
+[12:55:04] INFO: Compañía actualizada: Robatech
+[12:55:04] INFO: Verificando instalación de módulos: ['base', 'contacts', 'mail', 'account', 'website', 'crm']
+[12:55:04] INFO: Todos los módulos ya están instalados.
+[12:55:04] INFO: Proceso de módulos finalizado.
+[12:55:04] INFO: Procesando usuario: xtendoo
+[12:55:12] INFO:   Usuario xtendoo creado con password='xtendoo' (id=[5])
+[12:55:13] ERROR: Odoo Fault en res.users.write: 1 - Traceback (most recent call last):
+  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 162, in xmlrpc_2
+    response = self._xmlrpc(service)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 134, in _xmlrpc
+    result = dispatch_rpc(service, method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/http.py", line 439, in dispatch_rpc
+    return dispatch(method, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 129, in dispatch
+    res = execute_cr(cr, uid, model, method_, args, kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 146, in execute_cr
+    result = retrying(partial(call_kw, recs, method, args, kw), env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 184, in retrying
+    result = func()
+             ^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 93, in call_kw
+    result = method(recs, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/calendar/models/res_users.py", line 71, in write
+    return super().write(vals)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/auth_totp_mail/models/res_users.py", line 22, in write
+    res = super().write(vals)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/auth_signup/models/res_users.py", line 282, in write
+    return super().write(vals)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/mail/models/discuss/res_users.py", line 19, in write
+    res = super().write(vals)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/mail/models/res_users.py", line 214, in write
+    write_res = super().write(vals)
+                ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/auto/addons/resource/models/res_users.py", line 17, in write
+    rslt = super().write(vals)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_users.py", line 1370, in write
+    res = super().write(vals)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_users.py", line 605, in write
+    if self == self.env.user:
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 6609, in __eq__
+    return self._name == other._name and set(self._ids) == set(other._ids)
+                                         ^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+Traceback (most recent call last):
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 525, in <module>
+    main()
+    ~~~~^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 505, in main
+    ensure_user(models, db, uid, password, u)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 427, in ensure_user
+    model_exec(
+    ~~~~~~~~~~^
+        models,
+        ^^^^^^^
+    ...<6 lines>...
+        {"groups_id": groups_val},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 105, in model_exec
+    raise e
+  File "/home/xtendoo/Documentos/odoo/skills/odoo-provisioning/provision.py", line 89, in model_exec
+    return models.execute_kw(db, uid, password, model, method, args, kwargs)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1156, in single_request
+    return self.parse_response(resp)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 1325, in parse_response
+    return u.close()
+           ~~~~~~~^^
+  File "/usr/lib/python3.13/xmlrpc/client.py", line 642, in close
+    raise Fault(**self._stack[0])
+xmlrpc.client.Fault: <Fault 1: 'Traceback (most recent call last):\n  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 162, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/rpc/controllers/xmlrpc.py", line 134, in _xmlrpc\n    result = dispatch_rpc(service, method, params)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/http.py", line 439, in dispatch_rpc\n    return dispatch(method, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 129, in dispatch\n    res = execute_cr(cr, uid, model, method_, args, kw)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 146, in execute_cr\n    result = retrying(partial(call_kw, recs, method, args, kw), env)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 184, in retrying\n    result = func()\n             ^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/service/model.py", line 93, in call_kw\n    result = method(recs, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/calendar/models/res_users.py", line 71, in write\n    return super().write(vals)\n           ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/auth_totp_mail/models/res_users.py", line 22, in write\n    res = super().write(vals)\n          ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/auth_signup/models/res_users.py", line 282, in write\n    return super().write(vals)\n           ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/mail/models/discuss/res_users.py", line 19, in write\n    res = super().write(vals)\n          ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/mail/models/res_users.py", line 214, in write\n    write_res = super().write(vals)\n                ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/auto/addons/resource/models/res_users.py", line 17, in write\n    rslt = super().write(vals)\n           ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_users.py", line 1370, in write\n    res = super().write(vals)\n          ^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/addons/base/models/res_users.py", line 605, in write\n    if self == self.env.user:\n       ^^^^^^^^^^^^^^^^^^^^^\n  File "/opt/odoo/custom/src/odoo/odoo/orm/models.py", line 6609, in __eq__\n    return self._name == other._name and set(self._ids) == set(other._ids)\n                                         ^^^^^^^^^^^^^^\nTypeError: unhashable type: \'list\'\n'>
